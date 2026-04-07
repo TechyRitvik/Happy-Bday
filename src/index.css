@@ -5,6 +5,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border: 0;
+  outline: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 :root {
@@ -29,9 +39,17 @@ body {
   padding: 0;
 }
 
-html, body, #root {
-  width: 100%;
-  min-height: 100vh;
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+}
+
+button {
   margin: 0;
   padding: 0;
 }
@@ -69,7 +87,7 @@ html, body, #root {
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 12px rgba(219, 39, 119, 0.08);
+  box-shadow: none;
   margin: 0;
   padding: 0;
 }
@@ -115,7 +133,6 @@ html, body, #root {
 
 .romantic-card:hover {
   transform: translateY(-3px);
-  box-shadow: 12px 12px 24px rgba(219, 39, 119, 0.15), -6px -6px 16px rgba(255, 255, 255, 1);
 }
 
 /* Buttons */

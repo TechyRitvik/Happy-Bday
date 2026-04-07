@@ -11,9 +11,9 @@ function App() {
   const location = useLocation()
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', margin: 0, padding: 0 }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', margin: 0, padding: 0 }}>
       <Navigation />
-      <main style={{ flex: '1 1 auto', position: 'relative', margin: 0, padding: 0 }}>
+      <div style={{ flex: 1 }}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<BirthdayPage />} />
@@ -22,7 +22,7 @@ function App() {
             <Route path="/memories" element={<MemoryPage />} />
           </Routes>
         </AnimatePresence>
-      </main>
+      </div>
       <Footer />
     </div>
   )

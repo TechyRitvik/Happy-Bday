@@ -5,13 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import FloatingParticles from '../components/FloatingParticles'
 
-const modalSlides = [
-  { id: 1, text: "Some birthdays feel special… not because of the day, but because of the person." },
-  { id: 2, text: "It's funny how certain memories don't ask for permission… they just stay." },
-  { id: 3, text: "You've always had a way of making ordinary moments feel… a little extra." },
-  { id: 4, text: "I don't know what the future holds… but I'm really glad the past had you in it." },
-  { id: 5, text: "And maybe… some stories don't really end, they just pause for a while." }
-]
 
 export default function BirthdayPage() {
   const { playTrack, stopTrack } = useAudio()
@@ -65,12 +58,14 @@ export default function BirthdayPage() {
 
   return (
     <div style={{
-      minHeight: 'calc(100vh - 120px)',
+      width: '100%',
+      minHeight: '100vh',
       background: 'linear-gradient(180deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%)',
       fontFamily: 'Nunito Sans, system-ui, Segoe UI, Arial',
       color: 'var(--text-dark)',
       position: 'relative',
-      paddingBottom: '20px'
+      margin: 0,
+      padding: 0
     }}>
       <FloatingParticles />
       
@@ -80,8 +75,8 @@ export default function BirthdayPage() {
         transition={{ duration: 4, repeat: Infinity }}
         style={{
           position: 'absolute',
-          top: -100,
-          right: -100,
+          top: 0,
+          right: 0,
           width: '400px',
           height: '400px',
           borderRadius: '50%',
@@ -93,8 +88,8 @@ export default function BirthdayPage() {
         transition={{ duration: 5, repeat: Infinity }}
         style={{
           position: 'absolute',
-          bottom: -50,
-          left: -50,
+          bottom: 0,
+          left: 0,
           width: '300px',
           height: '300px',
           borderRadius: '50%',
@@ -105,7 +100,7 @@ export default function BirthdayPage() {
       <motion.div 
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        style={{ textAlign: 'center', marginBottom: '20px', marginTop: '40px', position: 'relative', zIndex: 1 }}
+        style={{ textAlign: 'center', position: 'relative', zIndex: 1, paddingTop: '20px' }}
       >
         <h1 style={{ 
           fontSize: '56px', 
@@ -171,6 +166,19 @@ export default function BirthdayPage() {
           >
             <source src="/assets/bday.mp4" type="video/mp4" />
           </video>
+        </motion.div>
+      )}
+
+      {cakeCut && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1 }}
+          style={{ textAlign: 'center', marginTop: '30px', position: 'relative', zIndex: 1 }}
+        >
+          <Link to="/game" className="romantic-btn" style={{ display: 'inline-block', textDecoration: 'none' }}>
+            Next →
+          </Link>
         </motion.div>
       )}
 

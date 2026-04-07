@@ -3,27 +3,37 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import FloatingParticles from '../components/FloatingParticles'
 
-const staticParagraph = `There are these moments that stay with you — not because they were grand or perfect, but because they meant something. You and I had one of those. We were young, we were figuring things out, and maybe we didn't get the timing right the first time. But somewhere between all the laughter and late-night conversations, something stuck. Not as a wound, but as a warmth I carried quietly. When we stopped talking, the silence wasn't empty — it was full of echoes. And when we started talking again, it felt like finding a song you forgot you loved. I'm not asking for a fairytale. I'm just saying — maybe this time, we can be what we were always meant to be. No rush, no pressure. Just us, again. It's great to have you back. Happy Birthday 🎂`
+const staticParagraph = `There are these moments that stay with you not because they were grand or perfect, but because they meant something. You and I had one of those. We were young, we were figuring things out, and maybe we didn't get the timing right the first time. But somewhere between all the laughter and late-night conversations, something stuck. Not as a wound, but as a warmth I carried quietly. When we stopped talking, the silence wasn't empty it was full of echoes. And when we started talking again, it felt like finding a song you forgot you loved. I'm not asking for a fairytale. I'm just saying... maybe this time, we can be what we were always meant to be. No rush, no pressure. Just us, again. It's great to have you back. Happy Birthday Mahak🎂`
 
-const memoryImages = [
-  '/assets/memory1.jpg',
-  '/assets/memory2.jpg',
-  '/assets/memory3.jpg',
-  '/assets/memory4.jpg',
-  '/assets/memory5.jpg',
-  '/assets/memory6.jpg',
-  '/assets/memory7.jpg',
-  '/assets/memory8.jpg',
-  '/assets/memory9.jpg',
-  '/assets/memory10.jpg',
-  '/assets/memory11.jpg',
-  '/assets/memory12.jpg',
-  '/assets/memory13.jpg',
-  '/assets/memory14.jpg',
+const allImages = [
+  '/assets/photos/WhatsApp Image 2026-04-07 at 6.21.35 PM.jpeg',
+  '/assets/photos/WhatsApp Image 2026-04-07 at 6.21.36 PM.jpeg',
+  '/assets/photos/WhatsApp Image 2026-04-07 at 6.21.42 PM.jpeg',
+  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07 PM.jpeg',
+  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.41 PM.jpeg',
+  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.43 PM.jpeg',
+  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.44 PM.jpeg',
+  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.52 PM.jpeg',
+  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.55 PM.jpeg',
+  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.59 PM.jpeg',
+  '/assets/photos/WhatsApp Image 2026-04-07 at 8.08.01 PM.jpeg',
+  '/assets/photos/WhatsApp Image 2026-04-07 at 8.08.02 PM.jpeg',
+  '/assets/photos/WhatsApp I02 PM.jpeg',
+  '/assets/photos/WhatsApp Imag PM.jpeg',
 ]
+
+function shuffleArray(array) {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
 
 export default function MemoryPage() {
   const audioRef = useRef(null)
+  const [memoryImages] = useState(() => shuffleArray(allImages))
   const [currentIdx, setCurrentIdx] = useState(0)
 
   useEffect(() => {
@@ -51,12 +61,13 @@ export default function MemoryPage() {
 
   return (
     <div style={{
-      minHeight: 'calc(100vh - 120px)',
+      minHeight: '100vh',
       background: 'linear-gradient(180deg, #1f1c2c 0%, #928dab 100%)',
       fontFamily: 'Nunito Sans, system-ui, Segoe UI, Arial',
       color: 'white',
       position: 'relative',
-      paddingBottom: '20px'
+      margin: 0,
+      padding: 0
     }}>
       {/* Background Image with Blur */}
       <div style={{
@@ -102,7 +113,7 @@ export default function MemoryPage() {
         💕
       </motion.div>
 
-      <main style={{ maxWidth: '1200px', margin: '28px auto', padding: '0 18px', position: 'relative', zIndex: 1 }}>
+      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 18px', position: 'relative', zIndex: 1 }}>
         <motion.section 
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -170,9 +181,6 @@ export default function MemoryPage() {
               }}>
                 {staticParagraph}
               </p>
-              <button className="romantic-btn" style={{ marginTop: '20px', width: '100%' }}>
-                My wishes for you
-              </button>
             </div>
           </div>
         </motion.section>

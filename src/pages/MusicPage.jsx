@@ -66,12 +66,13 @@ export default function MusicPage() {
 
   return (
     <div style={{
-      minHeight: 'calc(100vh - 120px)',
+      minHeight: '100vh',
       background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
       fontFamily: 'Nunito Sans, system-ui, Segoe UI, Arial',
       color: 'white',
       position: 'relative',
-      paddingBottom: '20px'
+      margin: 0,
+      padding: 0
     }}>
       <FloatingParticles />
       
@@ -107,7 +108,7 @@ export default function MusicPage() {
         padding: '60px 18px', 
         textAlign: 'center', 
         position: 'relative', 
-        zIndex: 1,
+        zIndex: 5,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
@@ -135,24 +136,35 @@ export default function MusicPage() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="w-full max-w-sm mx-auto"
+          className="w-full max-w-md mx-auto"
+          style={{ position: 'relative', zIndex: 10 }}
         >
-          <div className="relative">
+          <div className="relative" style={{
+            background: 'rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '32px',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+            padding: '32px'
+          }}>
             {/* Album Art */}
             <motion.div 
               className="relative flex justify-center"
               animate={{ 
                 boxShadow: isPlaying 
-                  ? '0 0 40px rgba(236, 72, 153, 0.5), 0 0 80px rgba(168, 85, 247, 0.3)' 
-                  : '0 0 20px rgba(236, 72, 153, 0.2)' 
+                  ? '0 0 50px rgba(236, 72, 153, 0.6), 0 0 100px rgba(168, 85, 247, 0.4)' 
+                  : '0 0 30px rgba(236, 72, 153, 0.3)' 
               }}
               transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
             >
-              <div className="w-64 h-64 rounded-3xl overflow-hidden border-4 border-white/20">
+              <div className="w-64 h-64 rounded-2xl overflow-hidden border-2 border-white/10" style={{
+                background: 'rgba(0, 0, 0, 0.3)'
+              }}>
                 <img 
                   src="/assets/music-cover.jpeg" 
                   alt="Album Cover"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full"
+                  style={{ objectFit: 'contain', background: '#1a1a2e' }}
                 />
               </div>
             </motion.div>
@@ -171,7 +183,7 @@ export default function MusicPage() {
             {/* Progress Bar */}
             <div className="mt-8 space-y-3">
               <div 
-                className="relative h-3 bg-white/20 rounded-full cursor-pointer"
+                className="relative h-2 bg-white/10 rounded-full cursor-pointer"
                 onClick={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect()
                   const percent = (e.clientX - rect.left) / rect.width
@@ -183,7 +195,7 @@ export default function MusicPage() {
                   style={{ width: `${duration > 0 ? (progress / duration) * 100 : 0}%` }}
                 />
               </div>
-              <div className="flex justify-between text-white/70 text-sm font-medium">
+              <div className="flex justify-between text-white/60 text-sm font-medium">
                 <span>{Math.floor(progress / 60)}:{String(Math.floor(progress % 60)).padStart(2, '0')}</span>
                 <span>{Math.floor(duration / 60)}:{String(Math.floor(duration % 60)).padStart(2, '0')}</span>
               </div>
