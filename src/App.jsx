@@ -13,7 +13,7 @@ function App() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', margin: 0, padding: 0 }}>
       <Navigation />
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<BirthdayPage />} />
@@ -23,7 +23,7 @@ function App() {
           </Routes>
         </AnimatePresence>
       </div>
-      <Footer />
+      <Footer style={{ flexShrink: 0 }} />
     </div>
   )
 }

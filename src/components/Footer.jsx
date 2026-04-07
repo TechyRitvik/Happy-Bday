@@ -19,7 +19,10 @@ export default function Footer() {
       background: colors.bg,
       color: colors.text,
       textAlign: 'center',
-      fontWeight: 600
+      fontWeight: 600,
+      flexShrink: 0,
+      position: 'relative',
+      zIndex: 10
     }}>
       Made with ❤️ by Rithvik for Mahak
     </div>
