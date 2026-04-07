@@ -3,23 +3,38 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import FloatingParticles from '../components/FloatingParticles'
 
-const staticParagraph = `There are these moments that stay with you not because they were grand or perfect, but because they meant something. You and I had one of those. We were young, we were figuring things out, and maybe we didn't get the timing right the first time. But somewhere between all the laughter and late-night conversations, something stuck. Not as a wound, but as a warmth I carried quietly. When we stopped talking, the silence wasn't empty it was full of echoes. And when we started talking again, it felt like finding a song you forgot you loved. I'm not asking for a fairytale. I'm just saying... maybe this time, we can be what we were always meant to be. No rush, no pressure. Just us, again. It's great to have you back. Happy Birthday Mahak🎂`
+const assetBase = import.meta.env.BASE_URL
+
+const staticParagraph = `There are these moments that stay with you not because they were grand or perfect, but because they meant something. You and I had one of those. We were young, we were figuring things out, and maybe we didn't get the timing right the first time. But somewhere between all the laughter and late-night conversations, something stuck. Not as a wound, but as a warmth I carried quietly. When we stopped talking, the silence wasn't empty it was full of echoes. And when we started talking again, it felt like finding a song you forgot you loved. I'm not asking for a fairytale. I'm just saying... maybe this time, we can be what we were always meant to be. No rush, no pressure. Just us, again. It's great to have you back. Happy Birthday Mahak🎂 
+
+-Ritvik <3`
 
 const allImages = [
-  '/assets/photos/WhatsApp Image 2026-04-07 at 6.21.35 PM.jpeg',
-  '/assets/photos/WhatsApp Image 2026-04-07 at 6.21.36 PM.jpeg',
-  '/assets/photos/WhatsApp Image 2026-04-07 at 6.21.42 PM.jpeg',
-  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07 PM.jpeg',
-  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.41 PM.jpeg',
-  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.43 PM.jpeg',
-  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.44 PM.jpeg',
-  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.52 PM.jpeg',
-  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.55 PM.jpeg',
-  '/assets/photos/WhatsApp Image 2026-04-07 at 8.07.59 PM.jpeg',
-  '/assets/photos/WhatsApp Image 2026-04-07 at 8.08.01 PM.jpeg',
-  '/assets/photos/WhatsApp Image 2026-04-07 at 8.08.02 PM.jpeg',
-  '/assets/photos/WhatsApp I02 PM.jpeg',
-  '/assets/photos/WhatsApp Imag PM.jpeg',
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 6.21.35 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 6.21.36 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 6.21.42 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 8.07 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 8.07.41 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 8.07.43 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 8.07.44 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 8.07.52 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 8.07.55 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 8.07.59 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 8.08.01 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 8.08.02 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp I02 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Imag PM.jpeg`,
+  // New photos added
+  `${assetBase}assets/photos/kasjdhfg;dskjglohsag;oi.jpeg`,
+  `${assetBase}assets/photos/W2026-04-07 at 8.07.59 PM.jpeg`,
+  `${assetBase}assets/photos/Wha.jpeg`,
+  `${assetBase}assets/photos/Wha04-07 at 8.07.55 PM.jpeg`,
+  `${assetBase}assets/photos/What26-04-07 at 8.07.53 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp I07.59 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 7 PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-04-07 at 8.07.PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp Image 2026-PM.jpeg`,
+  `${assetBase}assets/photos/WhatsApp mage 2026-04-07 at 8.07.48 PM.jpeg`,
 ]
 
 function shuffleArray(array) {
@@ -37,7 +52,7 @@ export default function MemoryPage() {
   const [currentIdx, setCurrentIdx] = useState(0)
 
   useEffect(() => {
-    const audio = new Audio('/assets/song.mp3')
+    const audio = new Audio(`${assetBase}assets/song.mp3`)
     audio.loop = true
     audio.volume = 0.7
     audioRef.current = audio
@@ -61,7 +76,7 @@ export default function MemoryPage() {
 
   return (
     <div style={{
-      minHeight: '100vh',
+      minHeight: '86vh',
       background: 'linear-gradient(180deg, #1f1c2c 0%, #928dab 100%)',
       fontFamily: 'Nunito Sans, system-ui, Segoe UI, Arial',
       color: 'white',
@@ -73,7 +88,7 @@ export default function MemoryPage() {
       <div style={{
         position: 'absolute',
         inset: 0,
-        backgroundImage: 'url(/assets/memory-bg.jpeg)',
+        backgroundImage: `url(${assetBase}assets/memory-bg.jpeg)`, 
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         filter: 'blur(8px)',

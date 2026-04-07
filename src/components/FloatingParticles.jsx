@@ -1,6 +1,10 @@
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 
+function getRandom(min, max) {
+  return min + Math.random() * (max - min);
+}
+
 const particles = ['💖', '✨', '💕', '🌸', '💗', '⭐', '🦋', '😍']
 
 export default function FloatingParticles() {
@@ -8,11 +12,11 @@ export default function FloatingParticles() {
     return Array.from({ length: 45 }, (_, i) => ({
       id: i,
       emoji: particles[i % particles.length],
-      left: Math.random() * 100,
-      size: 14 + Math.random() * 24,
-      duration: 6 + Math.random() * 14,
-      delay: Math.random() * 8,
-      opacity: 0.4 + Math.random() * 0.5
+      left: getRandom(0, 100),
+      size: getRandom(14, 38),
+      duration: getRandom(6, 20),
+      delay: getRandom(0, 8),
+      opacity: getRandom(0.4, 0.9)
     }))
   }, [])
 

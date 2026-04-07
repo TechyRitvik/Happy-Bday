@@ -2,40 +2,52 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import FloatingParticles from '../components/FloatingParticles'
-import MusicPlayerCard from '../components/MusicPlayerCard'
+import { useAudio } from '../context/AudioContext'
+
+const assetBase = import.meta.env.BASE_URL
+
+function getRandom(min, max) {
+  return min + Math.random() * (max - min);
+}
 
 export default function MusicPage() {
+  const { stopTrack } = useAudio()
   const audioRef = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
 
   useEffect(() => {
-    const audio = new Audio('/assets/song.mp3')
+    stopTrack()
+    
+    const audio = new Audio()
     audio.loop = true
     audio.volume = 0.7
     audioRef.current = audio
     
+    // Load the audio source
+    audio.src = `${assetBase}assets/song.mp3`
+    audio.load()
+    
     const updateProgress = () => {
-      setProgress(audio.currentTime)
-      setDuration(audio.duration || 0)
+      if (audioRef.current) {
+        setProgress(audioRef.current.currentTime)
+        setDuration(audioRef.current.duration || 0)
+      }
     }
     
     audio.addEventListener('timeupdate', updateProgress)
     audio.addEventListener('loadedmetadata', () => {
       setDuration(audio.duration)
     })
+    audio.addEventListener('canplay', () => {
+      console.log('Audio can play now')
+    })
+    audio.addEventListener('error', (e) => {
+      console.error('Audio error:', e)
+    })
     
     const interval = setInterval(updateProgress, 100)
-    
-    // Try autoplay
-    audio.play()
-      .then(() => {
-        setIsPlaying(true)
-      })
-      .catch(() => {
-        console.log('Autoplay blocked - will play on click')
-      })
     
     return () => {
       clearInterval(interval)
@@ -66,7 +78,7 @@ export default function MusicPage() {
 
   return (
     <div style={{
-      minHeight: '100vh',
+      minHeight: '82vh',
       background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
       fontFamily: 'Nunito Sans, system-ui, Segoe UI, Arial',
       color: 'white',
@@ -161,7 +173,7 @@ export default function MusicPage() {
                 background: 'rgba(0, 0, 0, 0.3)'
               }}>
                 <img 
-                  src="/assets/music-cover.jpeg" 
+                  src={`${assetBase}assets/music-cover.jpeg`} 
                   alt="Album Cover"
                   className="w-full h-full"
                   style={{ objectFit: 'contain', background: '#1a1a2e' }}
@@ -204,9 +216,24 @@ export default function MusicPage() {
             {/* Play Button */}
             <motion.div className="flex justify-center mt-8">
               <motion.button
+                type="button"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={togglePlay}
+                onClick={() => {
+                  console.log('Play button clicked, isPlaying:', isPlaying)
+                  if (!audioRef.current) return
+                  
+                  if (isPlaying) {
+                    audioRef.current.pause()
+                    setIsPlaying(false)
+                  } else {
+                    audioRef.current.play()
+                      .then(() => {
+                        setIsPlaying(true)
+                      })
+                      .catch(err => console.error('Play error:', err))
+                  }
+                }}
                 className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-3xl shadow-lg hover:shadow-pink-500/40 transition-all"
               >
                 {isPlaying ? '⏸' : '▶'}
@@ -220,7 +247,7 @@ export default function MusicPage() {
                   key={i}
                   className="w-1 bg-gradient-to-t from-pink-500 to-purple-400 rounded-full"
                   animate={{
-                    height: isPlaying ? [8, Math.random() * 32 + 8, 8] : 8
+                    height: isPlaying ? [8, getRandom(8, 40), 8] : 8
                   }}
                   transition={{
                     duration: 0.5,
@@ -241,7 +268,7 @@ export default function MusicPage() {
           transition={{ delay: 0.8 }}
           style={{ marginTop: '40px' }}
         >
-          <Link to="/memories" className="romantic-btn" style={{
+          <Link to="#/memories" className="romantic-btn" style={{
             display: 'inline-block',
             textDecoration: 'none'
           }}>Next →</Link>

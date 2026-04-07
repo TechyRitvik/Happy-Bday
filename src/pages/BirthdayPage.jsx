@@ -5,8 +5,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import FloatingParticles from '../components/FloatingParticles'
 
+const modalSlides = [
+  { text: "Happy Birthday Mahak! 🎂" },
+  { text: "May your day be as wonderful as you are!" },
+  { text: "Here's to another amazing year ahead! 🎉" },
+  { text: "Made with love by Rithvik ❤️" }
+]
 
 export default function BirthdayPage() {
+  const assetBase = import.meta.env.BASE_URL
   const { playTrack, stopTrack } = useAudio()
   const [cakeCut, setCakeCut] = useState(false)
   const [showSticker, setShowSticker] = useState(false)
@@ -22,7 +29,7 @@ export default function BirthdayPage() {
       setCakeCut(true)
       setShowSticker(true)
       
-      playTrack('/assets/birthday.mp3', 'Happy Birthday')
+      playTrack(`${assetBase}assets/birthday.mp3`, 'Happy Birthday')
       
       confetti({
         particleCount: 150,
@@ -59,7 +66,7 @@ export default function BirthdayPage() {
   return (
     <div style={{
       width: '100%',
-      minHeight: '100vh',
+      minHeight: '86vh',
       background: 'linear-gradient(180deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%)',
       fontFamily: 'Nunito Sans, system-ui, Segoe UI, Arial',
       color: 'var(--text-dark)',
@@ -164,7 +171,7 @@ export default function BirthdayPage() {
               boxShadow: '0 8px 32px rgba(219, 39, 119, 0.3)'
             }}
           >
-            <source src="/assets/bday.mp4" type="video/mp4" />
+            <source src={`${assetBase}assets/bday.mp4`} type="video/mp4" />
           </video>
         </motion.div>
       )}
@@ -176,7 +183,7 @@ export default function BirthdayPage() {
           transition={{ delay: 1 }}
           style={{ textAlign: 'center', marginTop: '30px', position: 'relative', zIndex: 1 }}
         >
-          <Link to="/game" className="romantic-btn" style={{ display: 'inline-block', textDecoration: 'none' }}>
+          <Link to="#/game" className="romantic-btn" style={{ display: 'inline-block', textDecoration: 'none' }}>
             Next →
           </Link>
         </motion.div>

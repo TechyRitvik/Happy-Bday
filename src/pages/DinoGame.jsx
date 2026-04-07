@@ -2,19 +2,24 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import FloatingParticles from '../components/FloatingParticles'
+import { useAudio } from '../context/AudioContext'
 
 export default function DinoGame() {
+  const { stopTrack } = useAudio()
   const canvasRef = useRef(null)
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
+    stopTrack()
+    
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
     let W = canvas.width, H = canvas.height;
 
-    const playerImg = new Image(); playerImg.src = '/assets/player.png';
-    const shooterImg = new Image(); shooterImg.src = '/assets/shooter.png';
-    const heartImg = new Image(); heartImg.src = '/assets/heartImg.png';
+    const assetBase = import.meta.env.BASE_URL
+    const playerImg = new Image(); playerImg.src = `${assetBase}assets/player.png`;
+    const shooterImg = new Image(); shooterImg.src = `${assetBase}assets/shooter.png`;
+    const heartImg = new Image(); heartImg.src = `${assetBase}assets/heartImg.png`;
     let imagesLoaded = 0;
     [playerImg, shooterImg, heartImg].forEach(img => { 
       img.onload = () => imagesLoaded++; 
@@ -228,7 +233,7 @@ export default function DinoGame() {
 
   return (
     <div style={{
-      minHeight: '100vh',
+      minHeight: '86vh',
       background: 'linear-gradient(135deg, #1a0533 0%, #2d1b4e 50%, #4a2c6a 100%)',
       fontFamily: 'Nunito Sans, system-ui, Segoe UI, Arial',
       color: 'white',
@@ -287,7 +292,7 @@ export default function DinoGame() {
           style={{ padding: '20px', textAlign: 'center' }}
         >
           <p style={{ color: 'rgba(255,255,255,0.7)' }}>When you lose you may try again or proceed to the next surprise.</p>
-          <Link to="/music" className="romantic-btn" style={{ display: 'inline-block', marginTop: '12px', textDecoration: 'none' }}>Go to Next Page</Link>
+          <Link to="#/music" className="romantic-btn" style={{ display: 'inline-block', marginTop: '12px', textDecoration: 'none' }}>Go to Next Page</Link>
         </motion.section>
       </main>
 
@@ -325,7 +330,7 @@ export default function DinoGame() {
               <p style={{ marginBottom: '24px', fontSize: '18px' }}>Kya gundi banegi re tu 😂</p>
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <button onClick={window.gameRestart} className="romantic-btn">Try Again</button>
-                <Link to="/music" className="romantic-btn-secondary" style={{ textDecoration: 'none' }}>Proceed Ahead</Link>
+                <Link to="#/music" className="romantic-btn-secondary" style={{ textDecoration: 'none' }}>Proceed Ahead</Link>
               </div>
             </motion.div>
           </motion.div>

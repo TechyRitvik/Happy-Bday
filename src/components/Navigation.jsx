@@ -1,5 +1,4 @@
 import { Link, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
 
 const pageColors = {
   '/': { bg: 'linear-gradient(180deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%)', text: '#831843' },
@@ -10,13 +9,13 @@ const pageColors = {
 
 export default function Navigation() {
   const location = useLocation()
-  const colors = pageColors[location.pathname] || pageColors['/']
+  const currentPath = location.hash.replace('#', '') || '/'
   
   const links = [
-    { path: '/', label: 'Birthday' },
-    { path: '/game', label: 'Game' },
-    { path: '/music', label: 'Music' },
-    { path: '/memories', label: 'Memories' }
+    { path: '#/', label: 'Birthday' },
+    { path: '#/game', label: 'Game' },
+    { path: '#/music', label: 'Music' },
+    { path: '#/memories', label: 'Memories' }
   ]
 
   return (
@@ -45,7 +44,7 @@ export default function Navigation() {
               to={link.path}
               style={{ 
                 color: colors.text,
-                background: location.pathname === link.path ? 'rgba(255,255,255,0.2)' : 'transparent',
+                background: currentPath === link.path.replace('#', '') ? 'rgba(255,255,255,0.2)' : 'transparent',
                 textDecoration: 'none',
                 fontWeight: 600,
                 fontFamily: 'Nunito Sans, sans-serif',
