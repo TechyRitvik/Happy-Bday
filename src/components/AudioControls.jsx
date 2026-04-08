@@ -1,4 +1,5 @@
 import { useAudio } from '../context/AudioContext'
+import { motion } from 'framer-motion'
 
 export default function AudioControls() {
   const { isPlaying, currentTrack, togglePlayPause } = useAudio()
