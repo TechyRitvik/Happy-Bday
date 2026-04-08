@@ -9,14 +9,14 @@ const pageColors = {
 
 export default function Navigation() {
   const location = useLocation()
-  const currentPath = location.hash.replace('#', '') || '/'
+  const currentPath = location.pathname
   const colors = pageColors[currentPath] || pageColors['/']
   
   const links = [
-    { path: '#/', label: 'Birthday' },
-    { path: '#/game', label: 'Game' },
-    { path: '#/music', label: 'Music' },
-    { path: '#/memories', label: 'Memories' }
+    { path: '/', label: 'Birthday' },
+    { path: '/game', label: 'Game' },
+    { path: '/music', label: 'Music' },
+    { path: '/memories', label: 'Memories' }
   ]
 
   return (
@@ -45,7 +45,7 @@ export default function Navigation() {
               to={link.path}
               style={{ 
                 color: colors.text,
-                background: currentPath === link.path.replace('#', '') ? 'rgba(255,255,255,0.2)' : 'transparent',
+                background: currentPath === link.path ? 'rgba(255,255,255,0.2)' : 'transparent',
                 textDecoration: 'none',
                 fontWeight: 600,
                 fontFamily: 'Nunito Sans, sans-serif',
