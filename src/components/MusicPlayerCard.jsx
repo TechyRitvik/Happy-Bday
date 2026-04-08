@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
 import { useAudio } from '../context/AudioContext'
 
 function formatTime(seconds) {
@@ -177,7 +176,7 @@ export default function MusicPlayerCard() {
               key={i}
               className="w-1 bg-gradient-to-t from-pink-500 to-purple-400 rounded-full"
               animate={{
-                height: isPlaying ? [8, Math.random() * 32 + 8, 8] : 8
+                height: isPlaying ? [8, (20 + i * 3) % 32 + 8, 8] : 8
               }}
               transition={{
                 duration: 0.5,

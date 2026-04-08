@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import FloatingParticles from '../components/FloatingParticles'
 import { useAudio } from '../context/AudioContext'
 
@@ -55,19 +54,6 @@ export default function MusicPage() {
       audio.src = ''
     }
   }, [])
-
-  const togglePlay = () => {
-    if (!audioRef.current) return
-    
-    if (isPlaying) {
-      audioRef.current.pause()
-      setIsPlaying(false)
-    } else {
-      audioRef.current.play()
-        .then(() => setIsPlaying(true))
-        .catch(console.error)
-    }
-  }
 
   const handleSeek = (newTime) => {
     if (audioRef.current) {

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import FloatingParticles from '../components/FloatingParticles'
 
 const assetBase = import.meta.env.BASE_URL

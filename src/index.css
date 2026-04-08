@@ -267,3 +267,20 @@ h1, h2, h3 {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Hide all scrollbars globally */
+html {
+  overflow-y: scroll;
+}
+
+body {
+  overflow-y: auto;
+}
+
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}

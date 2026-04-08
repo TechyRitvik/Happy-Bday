@@ -10,6 +10,7 @@ const pageColors = {
 export default function Navigation() {
   const location = useLocation()
   const currentPath = location.hash.replace('#', '') || '/'
+  const colors = pageColors[currentPath] || pageColors['/']
   
   const links = [
     { path: '#/', label: 'Birthday' },
