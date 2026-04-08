@@ -292,7 +292,7 @@ export default function DinoGame() {
           style={{ padding: '20px', textAlign: 'center' }}
         >
           <p style={{ color: 'rgba(255,255,255,0.7)' }}>When you lose you may try again or proceed to the next surprise.</p>
-          <Link to="#/music" className="romantic-btn" style={{ display: 'inline-block', marginTop: '12px', textDecoration: 'none' }}>Go to Next Page</Link>
+          <Link to="/music" className="romantic-btn" style={{ display: 'inline-block', marginTop: '12px', textDecoration: 'none' }}>Go to Next Page</Link>
         </motion.section>
       </main>
 
@@ -330,7 +330,7 @@ export default function DinoGame() {
               <p style={{ marginBottom: '24px', fontSize: '18px' }}>Kya gundi banegi re tu 😂</p>
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <button onClick={window.gameRestart} className="romantic-btn">Try Again</button>
-                <Link to="#/music" className="romantic-btn-secondary" style={{ textDecoration: 'none' }}>Proceed Ahead</Link>
+                <Link to="/music" className="romantic-btn-secondary" style={{ textDecoration: 'none' }}>Proceed Ahead</Link>
               </div>
             </motion.div>
           </motion.div>

@@ -255,7 +255,7 @@ export default function MusicPage() {
           transition={{ delay: 0.8 }}
           style={{ marginTop: '40px' }}
         >
-          <Link to="#/memories" className="romantic-btn" style={{
+          <Link to="/memories" className="romantic-btn" style={{
             display: 'inline-block',
             textDecoration: 'none'
           }}>Next →</Link>
