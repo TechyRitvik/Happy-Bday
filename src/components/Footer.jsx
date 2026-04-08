@@ -24,7 +24,7 @@ export default function Footer() {
       position: 'relative',
       zIndex: 10
     }}>
-      Made with ❤️ by Rithvik for Mahak
+      Made with ❤️ by Ritvik for Mahak
     </div>
   )
 }

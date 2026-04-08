@@ -36,7 +36,7 @@ export default function Navigation() {
         alignItems: 'center'
       }}>
         <h1 style={{ margin: 0, fontSize: '26px', color: colors.text, fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
-          Made with love by Rithvik for Mahak
+          Made with love by Ritvik for Mahak
         </h1>
         <nav style={{ display: 'flex', gap: '6px' }}>
           {links.map(link => (
